@@ -1,0 +1,1142 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+    background: #020303;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.game {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* =========================
+   MAIN MENU
+========================= */
+
+.menu {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 70%,
+            #152025 0%,
+            #060a0c 42%,
+            #010202 100%
+        );
+}
+
+.menu-atmosphere {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.75)
+        );
+
+    pointer-events: none;
+}
+
+.menu-atmosphere::before {
+    content: "";
+
+    position: absolute;
+
+    width: 70vw;
+    height: 25vh;
+
+    left: 15vw;
+    bottom: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(190, 195, 180, 0.08),
+            transparent
+        );
+
+    filter: blur(30px);
+}
+
+.menu-content {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+}
+
+.menu-small {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #777e7b;
+    margin-bottom: 22px;
+}
+
+.menu h1 {
+    margin: 0;
+
+    font-size: clamp(
+        48px,
+        8vw,
+        110px
+    );
+
+    font-weight: 300;
+    letter-spacing: 13px;
+    line-height: 0.9;
+}
+
+.menu h1 span {
+    display: block;
+    font-weight: 700;
+}
+
+.menu p {
+    color: #7d8581;
+    margin: 30px 0 45px;
+
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.menu button {
+    padding: 14px 38px;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.3
+    );
+
+    color: #d4d6d0;
+
+    border: 1px solid #4b514e;
+
+    letter-spacing: 3px;
+    font-size: 12px;
+
+    transition:
+        background 0.2s,
+        border-color 0.2s,
+        color 0.2s;
+}
+
+.menu button:hover {
+    background: #d7d8d1;
+    color: #050606;
+    border-color: #d7d8d1;
+}
+
+/* =========================
+   GENERAL GAME SCREEN
+========================= */
+
+.game-screen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* =========================
+   PETROL PUMP WORLD
+========================= */
+
+.pump-world {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #03070c 0%,
+            #0b151b 50%,
+            #101513 100%
+        );
+}
+
+.pump-sky {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 76% 17%,
+            rgba(220, 225, 210, 0.12),
+            transparent 4%
+        ),
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.5) 65%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
+}
+
+.pump-moon {
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    right: 18%;
+    top: 9%;
+
+    border-radius: 50%;
+
+    background: #c8cdc0;
+
+    box-shadow:
+        0 0 25px rgba(
+            200,
+            210,
+            195,
+            0.2
+        ),
+        0 0 80px rgba(
+            200,
+            210,
+            195,
+            0.06
+        );
+}
+
+.pump-forest {
+    position: absolute;
+
+    bottom: 25%;
+    width: 48%;
+    height: 48%;
+
+    opacity: 0.9;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 40%,
+            #07100e 41%,
+            #07100e 60%,
+            transparent 61%
+        ),
+        linear-gradient(
+            45deg,
+            transparent 40%,
+            #09120f 41%,
+            #09120f 65%,
+            transparent 66%
+        );
+}
+
+.pump-forest-left {
+    left: -10%;
+}
+
+.pump-forest-right {
+    right: -10%;
+    transform: scaleX(-1);
+}
+
+.pump-road {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 30%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #1a1d1d,
+            #080a0a
+        );
+
+    clip-path: polygon(
+        43% 0,
+        57% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+.petrol-station {
+    position: absolute;
+
+    left: 50%;
+    top: 25%;
+
+    width: min(
+        620px,
+        65vw
+    );
+
+    height: 360px;
+
+    transform: translateX(-50%);
+}
+
+.station-roof {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #181d1d;
+
+    border-top: 4px solid #5e625d;
+    border-bottom: 3px solid #080909;
+
+    color: #c9cbc4;
+
+    letter-spacing: 5px;
+    font-size: 15px;
+
+    box-shadow:
+        0 8px 25px
+            rgba(0, 0, 0, 0.7);
+}
+
+.station-building {
+    position: absolute;
+
+    left: 13%;
+    top: 55px;
+
+    width: 74%;
+    height: 230px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #242927,
+            #0e1211
+        );
+
+    border: 2px solid #323835;
+
+    box-shadow:
+        inset 0 0 50px
+            rgba(0, 0, 0, 0.55);
+}
+
+.station-window {
+    position: relative;
+    display: inline-block;
+
+    width: 27%;
+    height: 95px;
+
+    margin: 35px 2% 0 5%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(180, 190, 180, 0.15),
+            rgba(15, 20, 19, 0.7)
+        );
+
+    border: 3px solid #151918;
+}
+
+.station-door {
+    position: absolute;
+
+    right: 8%;
+    bottom: 0;
+
+    width: 22%;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #565c57;
+
+    writing-mode: vertical-rl;
+
+    border-left: 2px solid #080a09;
+}
+
+.fuel-pump {
+    position: absolute;
+
+    left: -75px;
+    bottom: 0;
+
+    width: 85px;
+    height: 180px;
+
+    background:
+        linear-gradient(
+            to right,
+            #161a19,
+            #292d2b,
+            #121514
+        );
+
+    border: 2px solid #414642;
+
+    box-shadow:
+        0 10px 30px
+            rgba(0, 0, 0, 0.6);
+}
+
+.fuel-display {
+    padding: 14px 5px;
+
+    text-align: center;
+
+    color: #818982;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.fuel-display strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #b5b7ad;
+
+    font-size: 20px;
+}
+
+.pump-hose {
+    position: absolute;
+
+    right: -35px;
+    top: 35px;
+
+    width: 45px;
+    height: 95px;
+
+    border-right: 5px solid #242827;
+    border-bottom: 5px solid #242827;
+
+    border-radius: 0 0 30px 0;
+}
+
+.station-light {
+    position: absolute;
+
+    left: 20%;
+    top: 15px;
+
+    width: 60%;
+    height: 10px;
+
+    background: #d7d8ca;
+
+    box-shadow:
+        0 0 35px
+            rgba(225, 230, 210, 0.28);
+}
+
+.pump-road-sign {
+    position: absolute;
+
+    right: 13%;
+    bottom: 30%;
+
+    padding: 18px 25px;
+
+    background: #4c514c;
+
+    border: 3px solid #8b9189;
+
+    color: #d1d2ca;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    transform: rotate(
+        -2deg
+    );
+}
+
+.pump-actions {
+    position: absolute;
+
+    left: 50%;
+    bottom: 7%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 10px;
+
+    z-index: 10;
+}
+
+.pump-actions button {
+    padding: 11px 22px;
+
+    background: rgba(
+        5,
+        7,
+        7,
+        0.88
+    );
+
+    color: #b8bcb5;
+
+    border: 1px solid #454b47;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.pump-actions button:hover {
+    background: #c4c7be;
+    color: #080909;
+}
+
+.pump-actions button:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.newspaper {
+    position: absolute;
+
+    right: 5%;
+    top: 19%;
+
+    width: min(
+        300px,
+        25vw
+    );
+
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c9c7b9,
+            #99978b
+        );
+
+    color: #151817;
+
+    box-shadow:
+        0 20px 50px
+            rgba(0, 0, 0, 0.6);
+
+    transform: rotate(
+        1.5deg
+    );
+
+    z-index: 20;
+}
+
+.newspaper-title {
+    border-bottom: 2px solid #333;
+
+    padding-bottom: 8px;
+
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.newspaper h2 {
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+    line-height: 1.1;
+}
+
+.newspaper p {
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.newspaper small {
+    display: block;
+
+    margin-top: 20px;
+
+    font-family: Georgia, serif;
+
+    font-style: italic;
+}
+
+.pump-clock {
+    position: absolute;
+
+    left: 30px;
+    top: 25px;
+
+    color: #9ea49e;
+
+    font-family: monospace;
+
+    font-size: 14px;
+    letter-spacing: 2px;
+
+    z-index: 5;
+}
+
+/* =========================
+   DRIVING GAME
+========================= */
+
+.driving-game {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #030505;
+}
+
+.driving-canvas {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    image-rendering: auto;
+}
+
+.driving-hint {
+    position: absolute;
+
+    left: 25px;
+    bottom: 18px;
+
+    padding: 8px 12px;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.28
+    );
+
+    color: rgba(
+        210,
+        215,
+        207,
+        0.4
+    );
+
+    font-family: monospace;
+
+    font-size: 9px;
+    letter-spacing: 1px;
+
+    pointer-events: none;
+
+    z-index: 30;
+}
+
+.driving-hint span {
+    margin: 0 7px;
+
+    color: rgba(
+        200,
+        205,
+        198,
+        0.2
+    );
+}
+
+/* =========================
+   STRANGER INTERACTION
+========================= */
+
+.stranger-interaction {
+    position: absolute;
+
+    left: 50%;
+    bottom: 27px;
+
+    transform: translateX(-50%);
+
+    width: min(
+        720px,
+        90vw
+    );
+
+    padding: 16px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(4, 6, 6, 0.92),
+            rgba(9, 11, 11, 0.82),
+            rgba(4, 6, 6, 0.92)
+        );
+
+    border-top: 1px solid
+        rgba(160, 165, 155, 0.28);
+
+    border-bottom: 1px solid
+        rgba(160, 165, 155, 0.15);
+
+    box-shadow:
+        0 -10px 40px
+            rgba(0, 0, 0, 0.35);
+
+    z-index: 40;
+}
+
+.stranger-message {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    color: #d1d3cc;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.stranger-message span {
+    color: #737a75;
+
+    font-size: 10px;
+}
+
+.stranger-buttons {
+    display: flex;
+    gap: 7px;
+}
+
+.stranger-buttons button {
+    padding: 9px 14px;
+
+    background: transparent;
+
+    color: #aaaFA8;
+
+    border: 1px solid #3c423e;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.stranger-buttons button:hover {
+    background: #c6c9c0;
+
+    color: #080909;
+
+    border-color: #c6c9c0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .newspaper {
+        width: 240px;
+    }
+
+    .pump-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        width: 90%;
+    }
+
+    .stranger-interaction {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stranger-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu h1 {
+        letter-spacing: 6px;
+    }
+
+    .menu-small {
+        letter-spacing: 3px;
+    }
+
+    .newspaper {
+        right: 10px;
+        top: 10%;
+        width: 220px;
+    }
+
+    .driving-hint {
+        display: none;
+    }
+
+    .stranger-buttons button {
+        flex: 1;
+    }
+}
+
+/* =========================
+   ANALOG HORROR LOOK
+========================= */
+
+/* old-TV overlay on top of everything: scanlines + slow flicker + dark corners */
+.analog-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 0px,
+            rgba(0, 0, 0, 0) 2px,
+            rgba(0, 0, 0, 0.16) 3px
+        ),
+        radial-gradient(
+            ellipse at center,
+            rgba(0, 0, 0, 0) 55%,
+            rgba(0, 0, 0, 0.55) 100%
+        );
+
+    animation: analog-flicker 0.22s infinite steps(2);
+}
+
+@keyframes analog-flicker {
+    0% { opacity: 0.92; }
+    50% { opacity: 1; }
+    100% { opacity: 0.95; }
+}
+
+/* chunky monospace text everywhere */
+.game,
+.menu,
+.driving-game {
+    font-family: "Courier New", Courier, monospace;
+}
+
+.menu h1,
+.menu-content p,
+.menu-small {
+    text-shadow: 2px 0 rgba(255, 0, 60, 0.35), -2px 0 rgba(0, 220, 255, 0.3);
+}
+
+.menu {
+    filter: contrast(1.1) saturate(0.55);
+}
+
+/* subtitle line (events that happen in the world) */
+.caption {
+    position: absolute;
+    left: 50%;
+    top: 14%;
+    transform: translateX(-50%);
+    max-width: min(760px, 88vw);
+    padding: 6px 14px;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: #e9e9e2;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    font-size: clamp(12px, 1.6vw, 18px);
+    letter-spacing: 2px;
+    text-shadow: 2px 0 rgba(255, 0, 60, 0.45), -2px 0 rgba(0, 220, 255, 0.4);
+
+    pointer-events: none;
+    z-index: 35;
+}
+
+.interact-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 12%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: #e6d890;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+
+    pointer-events: none;
+    z-index: 35;
+    animation: analog-flicker 0.8s infinite steps(2);
+}
+
+.stranger-buttons button.found {
+    color: #7fe0c0;
+    border-color: #2f6a58;
+}
+
+.stranger-buttons {
+    flex-wrap: wrap;
+}
+
+.stranger-message strong {
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+/* both endings */
+.ending-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 60;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+    background: rgba(2, 4, 4, 0.92);
+    color: #dfe3da;
+    font-family: "Courier New", Courier, monospace;
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+.ending-screen.lost {
+    background: rgba(8, 2, 2, 0.94);
+}
+
+.ending-text p {
+    margin: 10px 0;
+    font-size: clamp(18px, 3vw, 34px);
+    text-shadow: 2px 0 rgba(255, 0, 60, 0.45), -2px 0 rgba(0, 220, 255, 0.4);
+}
+
+.ending-text p.small {
+    font-size: clamp(11px, 1.4vw, 15px);
+    opacity: 0.7;
+}
+
+.ending-screen button {
+    padding: 12px 26px;
+    background: transparent;
+    color: #c6c9c0;
+    border: 1px solid #5a605b;
+    letter-spacing: 3px;
+}
+
+.ending-screen button:hover {
+    background: #c6c9c0;
+    color: #080909;
+}
+
+/* =========================
+   v3: ghost, chase, journal
+========================= */
+
+.menu-help {
+    margin-top: 28px;
+    max-width: 520px;
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+}
+
+.menu-help p {
+    margin: 8px 0;
+    text-shadow: none;
+}
+
+.interact-hint div + div {
+    margin-top: 4px;
+}
+
+/* the conversation with him */
+.stranger-interaction.dialogue {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.ghost-line {
+    display: block;
+    min-height: 3.2em;
+    color: #cfe4ee;
+    font-size: clamp(14px, 1.8vw, 20px);
+    letter-spacing: 1px;
+    text-shadow: 2px 0 rgba(255, 0, 60, 0.4), -2px 0 rgba(0, 220, 255, 0.4);
+}
+
+.dialogue-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dialogue-options button {
+    text-align: left;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #c6c9c0;
+    border: 1px solid #4a504c;
+    font-family: "Courier New", Courier, monospace;
+    font-size: clamp(11px, 1.3vw, 15px);
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.dialogue-options button:hover {
+    background: #c6c9c0;
+    color: #070808;
+}
+
+/* the headlights behind you, while you talk */
+.chase-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #e6d890;
+}
+
+.chase-track {
+    flex: 1;
+    height: 6px;
+    background: #1a1a18;
+    border: 1px solid #4a4638;
+}
+
+.chase-fill {
+    height: 100%;
+    background: #e6d890;
+    transition: width 0.2s;
+}
+
+/* the journal (Tab) */
+.journal {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(720px, 92vw);
+    max-height: 78vh;
+    overflow-y: auto;
+    padding: 18px 22px;
+
+    background: rgba(4, 6, 6, 0.93);
+    border: 1px solid #4a504c;
+    color: #cfd3c8;
+    font-family: "Courier New", Courier, monospace;
+    letter-spacing: 1px;
+    z-index: 50;
+}
+
+.journal h3 {
+    margin: 0 0 10px;
+    font-weight: normal;
+    letter-spacing: 6px;
+    color: #e6d890;
+}
+
+.journal-progress,
+.journal-meters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.journal-meters {
+    color: #8fb0a4;
+}
+
+.journal ul {
+    margin: 10px 0;
+    padding-left: 18px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.journal li {
+    margin-bottom: 6px;
+}
+
+.journal-foot {
+    margin-top: 12px;
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+.ending-text h2 {
+    margin: 0 0 24px;
+    font-weight: normal;
+    font-size: clamp(28px, 5vw, 56px);
+    letter-spacing: 10px;
+    text-shadow: 3px 0 rgba(255, 0, 60, 0.5), -3px 0 rgba(0, 220, 255, 0.45);
+}
+
+.ending-text p {
+    opacity: 0;
+    animation: ending-fade 1s forwards;
+}
+
+@keyframes ending-fade {
+    to { opacity: 1; }
+}
+
+.ending-text p.small {
+    animation-delay: 6s;
+}
